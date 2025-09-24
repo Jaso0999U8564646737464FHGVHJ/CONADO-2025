@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/png" href="CONADI.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Técnicos de Compras - CONADI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #83abaa;
+      --color-secondary: #434651;
+      --color-accent: #b2ddd4;
+      --color-background: #FFF9F0;
+      --color-text: #2D3748;
+      --color-light: #efefef;
+      --color-white: #FFFFFF;
+      --color-dark: #1A202C;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Header con efecto de partículas */
+    .particles-header {
+      position: relative;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: var(--color-white);
+      padding: 30px 0;
+      text-align: center;
+      border-radius: 0 0 20px 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-icon {
+      font-size: 3rem;
+      margin-right: 20px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+    
+    .document-counter {
+      text-align: right;
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+      color: var(--color-white);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .document-counter:before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+    
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 10px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .content {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    /* Sidebar mejorado */
+    .sidebar {
+      flex: 1;
+      background: linear-gradient(to bottom, var(--color-white), var(--color-light));
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--color-accent);
+      border-radius: 10px;
+    }
+    
+    .sidebar h2 {
+      color: var(--color-primary);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--color-accent);
+      font-size: 1.5rem;
+      position: relative;
+    }
+    
+    .sidebar h2:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--color-secondary);
+    }
+    
+    /* Contenido principal mejorado */
+    .main-content {
+      flex: 3;
+      background: linear-gradient(to bottom, var(--color-white), var(--color-background));
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .main-content:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, var(--color-accent), transparent);
+      border-radius: 0 0 0 100px;
+      z-index: 0;
+    }
+    
+    .page-title {
+      color: var(--color-primary);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--color-light);
+      font-size: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .page-title:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background: var(--color-secondary);
+    }
+    
+    /* Estilos para el documento recibido */
+    .document-received {
+      background: var(--color-white);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .document-received h3 {
+      color: var(--color-secondary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--color-accent);
+    }
+    
+    .checkbox-group {
+      margin: 20px 0;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 12px;
+      background: var(--color-light);
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+    
+    .checkbox-item:hover {
+      background: var(--color-accent);
+      transform: translateX(5px);
+    }
+    
+    .checkbox-item input[type="checkbox"] {
+      margin-right: 15px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
+    .checkbox-item label {
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    
+    /* Mejoras para la visualización de documentos */
+    .documents-container {
+      margin: 25px 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .documents-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .document-card {
+      background: var(--color-white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .document-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .document-preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-light);
+      overflow: hidden;
+    }
+    
+    .document-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .document-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .pdf-icon {
+      font-size: 4rem;
+      color: #e74c3c;
+    }
+    
+    .document-info {
+      padding: 15px;
+    }
+    
+    .document-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .document-type {
+      font-size: 0.8rem;
+      color: var(--color-secondary);
+      background: var(--color-light);
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    
+    .document-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    
+    .document-btn {
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+    
+    .document-btn:hover {
+      background: var(--color-secondary);
+    }
+    
+    /* Textarea */
+    #comentarioNuevo {
+      width: 100%;
+      height: 120px;
+      margin: 25px 0;
+      border: 2px solid var(--color-light);
+      border-radius: 15px;
+      padding: 15px;
+      background-color: var(--color-background);
+      color: var(--color-text);
+      font-size: 1rem;
+      resize: vertical;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+    
+    #comentarioNuevo:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(178, 221, 212, 0.3);
+    }
+    
+    /* Botón de correo */
+    .go-to-mail {
+      text-align: center;
+      margin: 25px 0;
+    }
+    
+    .btn-mail {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: var(--color-white);
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .btn-mail i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .btn-mail:hover {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    /* Botones de sección */
+    .btn-seccion {
+      display: inline-flex;
+      align-items: center;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, #a0b7cd, #293b69);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: left;
+    }
+    
+    .btn-seccion i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .btn-seccion:hover {
+      background: linear-gradient(135deg, #8fd1e7, #d1e1f2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: var(--color-white);
+      border-radius: 20px 20px 0 0;
+      box-shadow: var(--shadow);
+    }
+    
+    /* Partículas */
+    .particle {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .content {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+      
+      .header-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      
+      .document-counter {
+        text-align: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .documents-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header con partículas -->
+  <header class="particles-header" id="animated-header">
+    <div class="container header-flex">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-file-contract"></i></div>
+        <div>
+          <h1>Manual de Normas y Procedimientos</h1>
+          <p class="subtitle">CONADI - Técnicos de Compras</p>
+        </div>
+      </div>
+      <div class="document-counter">
+        <h3><i class="fas fa-file-alt"></i> Documentos Recibidos</h3>
+        <div class="counter-number" id="docCounter">0</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <label for="scannerInput"><strong>Escanear documento:</strong></label>
+    <input type="file" id="scannerInput" accept=".pdf,image/*" multiple style="display:none;" />
+
+    <div class="content">
+      <div class="sidebar">
+        <h2>Navegación</h2>
+        
+        <!-- Enlace de regreso a la página principal -->
+        <a href="index.html" class="btn-seccion">
+          <i class="fas fa-arrow-left"></i> Volver al Inicio
+        </a>
+        
+        <!-- Enlace a la página de correo -->
+        <a href="Correo Lic.html" class="btn-seccion">
+          <i class="fas fa-envelope"></i> Enviar por Correo
+        </a>
+        
+        <!-- Separador -->
+        <div style="margin: 20px 0; border-bottom: 1px solid var(--color-accent);"></div>
+        
+        <h3 style="color: var(--color-secondary); margin-bottom: 15px;">Departamentos</h3>
+        
+        <!-- Lista sin repetidos -->
+        <a href="Direccion o Departamento o unidad solicitante.html" class="btn-seccion">
+          <i class="fas fa-database"></i> Dirección o Unidad Solicitante
+        </a> 
+        <a href="T de centros de Costos.html" class="btn-seccion">
+          <i class="fas fa-database"></i> Técnico de Centro de Costos
+        </a>
+        <a href="Jefe de Departamentos de Compras.html" class="btn-seccion">
+          <i class="fas fa-database"></i> Jefe de Departamentos de Compras
+        </a>
+        <a href="Direccion Administrativa.html" class="btn-seccion">
+          <i class="fas fa-database"></i> Dirección Administrativa
+        </a>
+        <a href="Director Administrativo.html" class="btn-seccion">
+          <i class="fas fa-database"></i> Director Administrativo
+        </a>
+        <a href="Tecnicos de Compras.html" class="btn-seccion active">
+          <i class="fas fa-database"></i> Técnicos de Compras
+        </a>
+        <a href="Departamento de Presupuesto.html" class="btn-seccion">
+          <i class="fas fa-database"></i> Departamento de Presupuesto
+        </a>
+      </div>
+
+      <div class="main-content">
+        <h2 class="page-title">Técnicos de Compras</h2>
+
+        <div class="document-status" id="documentStatus">
+          <i class="fas fa-info-circle"></i> <span id="statusText">Cargando documentos...</span>
+        </div>
+
+        <div class="document-received">
+          <h3>Documentos Recibidos</h3>
+          <p>Aquí se muestran los documentos que han sido enviados desde el Director Administrativo.</p>
+          <hr style="margin: 20px 0; border: 1px dashed var(--color-accent);">
+          
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="revision">
+              <label for="revision">He revisado la información</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="enviar">
+              <label for="enviar">Listo para enviar a Departamento de Presupuesto</label>
+            </div>
+          </div>
+          
+          <div class="documents-container">
+            <div class="documents-header">
+              <h4>Archivos recibidos:</h4>
+              <span id="documentsCount">0 documentos</span>
+            </div>
+            
+            <div class="documents-grid" id="documentsGrid">
+              <!-- Los documentos se mostrarán aquí -->
+              <div class="no-documents" id="noDocuments">
+                <p>No hay documentos recibidos desde el Director Administrativo.</p>
+              </div>
+            </div>
+          </div>
+          
+          <h4>Comentario recibido:</h4>
+          <div class="document-item" id="commentContainer">
+            <p id="comentarioRecibido">No se recibió ningún comentario.</p>
+          </div>
+
+          <h4>Añadir nuevas correcciones:</h4>
+          <textarea id="comentarioNuevo" placeholder="Escribe las correcciones que agregas antes de enviar..."></textarea>
+
+          <div class="go-to-mail">
+            <button id="btnEnviar" class="btn-mail" style="pointer-events:none; opacity:0.6;">
+              <i class="fas fa-paper-plane"></i> Enviar a Departamento de Presupuesto
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 CONADI - Consejo Nacional para la Atención de las Personas con Discapacidad</p>
+      <p>1a avenida 4-18, Zona 1, Ciudad de Guatemala, Guatemala, C.A. | PBX: 25016800</p>
+    </div>
+  </footer>
+
+  <script>
+    // Crear partículas para el header
+    function createParticles() {
+      const header = document.getElementById('animated-header');
+      // Si no existe (por seguridad) salir
+      if (!header) return;
+      const particleCount = 20;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        const size = Math.random() * 10 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        particle.style.animation = `moveParticle ${Math.random() * 10 + 10}s linear infinite`;
+        
+        header.appendChild(particle);
+      }
+      
+      // Añadir estilos para la animación de partículas
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes moveParticle {
+          0% {
+            transform: translate(0, 0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    // Función para cargar documentos desde localStorage (clave: documentData)
+    function loadDocumentsFromStorage() {
+      const documentsGrid = document.getElementById('documentsGrid');
+      const noDocuments = document.getElementById('noDocuments');
+      const statusText = document.getElementById('statusText');
+      const comentarioRecibido = document.getElementById('comentarioRecibido');
+      const docCounter = document.getElementById('docCounter');
+      const documentsCount = document.getElementById('documentsCount');
+      
+      // Limpiar grid
+      documentsGrid.innerHTML = '';
+      
+      const savedData = localStorage.getItem('documentData');
+      
+      if (savedData) {
+        let data;
+        try {
+          data = JSON.parse(savedData);
+        } catch (e) {
+          console.error('documentData JSON parse error', e);
+          statusText.textContent = 'Error leyendo datos almacenados.';
+          noDocuments.style.display = 'block';
+          return;
+        }
+        
+        // Aseguramos estructura mínima
+        data.files = Array.isArray(data.files) ? data.files : [];
+        data.comentario = data.comentario || data.comment || data.comentario || '';
+        
+        if (data.files.length > 0) {
+          // Mostrar documentos
+          statusText.textContent = `Se han recibido ${data.files.length} documento(s) desde el Director Administrativo.`;
+          docCounter.textContent = data.files.length.toString().padStart(3, '0');
+          documentsCount.textContent = `${data.files.length} documento${data.files.length !== 1 ? 's' : ''}`;
+          
+          noDocuments.style.display = 'none';
+          
+          data.files.forEach((file, index) => {
+            const documentCard = document.createElement('div');
+            documentCard.classList.add('document-card');
+            
+            const documentPreview = document.createElement('div');
+            documentPreview.classList.add('document-preview');
+            
+            if (file.type && file.type.startsWith && file.type.startsWith("image/")) {
+              // Mostrar imagen
+              const img = document.createElement('img');
+              img.src = file.url;
+              img.alt = file.name;
+              documentPreview.appendChild(img);
+            } else if (file.type && file.type === "application/pdf") {
+              // Icono PDF
+              const icon = document.createElement('i');
+              icon.classList.add('fas', 'fa-file-pdf', 'pdf-icon');
+              documentPreview.appendChild(icon);
+            } else {
+              // General
+              const icon = document.createElement('i');
+              icon.classList.add('fas', 'fa-file', 'pdf-icon');
+              documentPreview.appendChild(icon);
+            }
+            
+            const documentInfo = document.createElement('div');
+            documentInfo.classList.add('document-info');
+            
+            const documentName = document.createElement('div');
+            documentName.classList.add('document-name');
+            documentName.textContent = file.name || `Archivo ${index + 1}`;
+            documentInfo.appendChild(documentName);
+            
+            const documentType = document.createElement('div');
+            documentType.classList.add('document-type');
+            documentType.textContent = file.type && file.type.startsWith && file.type.startsWith("image/") ? 'Imagen' : (file.type || 'Archivo');
+            documentInfo.appendChild(documentType);
+            
+            const documentActions = document.createElement('div');
+            documentActions.classList.add('document-actions');
+            
+            // Descargar
+            const downloadBtn = document.createElement('button');
+            downloadBtn.classList.add('document-btn');
+            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Descargar';
+            downloadBtn.onclick = () => {
+              try {
+                const a = document.createElement('a');
+                a.href = file.url;
+                a.download = file.name || '';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+              } catch (e) {
+                console.error('Error al iniciar descarga', e);
+              }
+            };
+            documentActions.appendChild(downloadBtn);
+            
+            // Ver
+            const viewBtn = document.createElement('button');
+            viewBtn.classList.add('document-btn');
+            viewBtn.innerHTML = '<i class="fas fa-eye"></i> Ver';
+            viewBtn.onclick = () => viewDocument(file.url, file.type);
+            documentActions.appendChild(viewBtn);
+            
+            documentInfo.appendChild(documentActions);
+            
+            documentCard.appendChild(documentPreview);
+            documentCard.appendChild(documentInfo);
+            
+            documentsGrid.appendChild(documentCard);
+          });
+          
+          // Mostrar comentario si existe (soportando claves distintas)
+          if (data.comentario && data.comentario.trim() !== '') {
+            comentarioRecibido.textContent = data.comentario;
+          } else if (data.comment && data.comment.trim() !== '') {
+            comentarioRecibido.textContent = data.comment;
+          } else {
+            comentarioRecibido.textContent = "No se recibió ningún comentario.";
+          }
+        } else {
+          statusText.textContent = "No hay documentos recibidos. Por favor, suba documentos en la página principal.";
+          docCounter.textContent = "000";
+          documentsCount.textContent = "0 documentos";
+          noDocuments.style.display = 'block';
+          comentarioRecibido.textContent = "No se recibió ningún comentario.";
+        }
+      } else {
+        statusText.textContent = "No hay datos recibidos. Por favor, suba documentos en la página principal.";
+        docCounter.textContent = "000";
+        documentsCount.textContent = "0 documentos";
+        noDocuments.style.display = 'block';
+        comentarioRecibido.textContent = "No se recibió ningún comentario.";
+      }
+    }
+    
+    // Función para ver documento (abre en nueva pestaña)
+    function viewDocument(url, type) {
+      if (!url) {
+        alert('No hay URL disponible para este archivo.');
+        return;
+      }
+      // Si fuese necesario, se puede mejorar para mostrar modal viewer.
+      window.open(url, '_blank');
+    }
+    
+    // Control del checkbox y habilitar botón de enviar
+    function setupSendControls() {
+      const revision = document.getElementById('revision');
+      const enviar = document.getElementById('enviar');
+      const btnEnviar = document.getElementById('btnEnviar');
+      if (!revision || !btnEnviar) return;
+      
+      // Habilitar/Deshabilitar botón basado en "revision" checkbox y "enviar" checkbox
+      function updateBtn() {
+        if (revision.checked && document.getElementById('enviar') && document.getElementById('enviar').checked) {
+          btnEnviar.style.pointerEvents = 'auto';
+          btnEnviar.style.opacity = '1';
+        } else {
+          btnEnviar.style.pointerEvents = 'none';
+          btnEnviar.style.opacity = '0.6';
+        }
+      }
+      
+      // Inicial
+      updateBtn();
+      
+      revision.addEventListener('change', updateBtn);
+      const enviarChk = document.getElementById('enviar');
+      if (enviarChk) enviarChk.addEventListener('change', updateBtn);
+      
+      // Evento click para enviar
+      btnEnviar.addEventListener('click', (e) => {
+        e.preventDefault();
+        enviarADepartamentoPresupuesto();
+      });
+    }
+    
+    // Función que envía los datos al siguiente departamento (Departamento de Presupuesto)
+    function enviarADepartamentoPresupuesto() {
+      const revision = document.getElementById('revision');
+      if (!revision || !revision.checked) {
+        alert('Debes marcar la casilla "He revisado la información" antes de enviar.');
+        return;
+      }
+      
+      const comentarioNuevo = document.getElementById('comentarioNuevo').value || '';
+      // Recuperar documentData
+      const savedDataRaw = localStorage.getItem('documentData');
+      if (!savedDataRaw) {
+        alert('No hay documentos para enviar.');
+        return;
+      }
+      
+      let data;
+      try {
+        data = JSON.parse(savedDataRaw);
+      } catch (e) {
+        console.error('Error parseando documentData al enviar:', e);
+        alert('Error con los datos almacenados. No se puede enviar.');
+        return;
+      }
+      
+      // Añadir historial simple dentro del objeto (no rompe estructura)
+      const now = new Date().toISOString();
+      const paso = {
+        from: 'Técnicos de Compras',
+        to: 'Departamento de Presupuesto',
+        date: now,
+        comment: comentarioNuevo
+      };
+      
+      if (!Array.isArray(data.history)) data.history = [];
+      data.history.push(paso);
+      
+      // También concatenamos el comentario principal para que el siguiente departamento lo vea
+      const existingComentario = data.comentario || data.comment || '';
+      const combinedComment = existingComentario + (existingComentario ? '\n\n' : '') + `[Enviado por Técnicos de Compras el ${new Date(now).toLocaleString()}]\n${comentarioNuevo}`;
+      // Guardamos en la misma clave 'comentario' (consistencia)
+      data.comentario = combinedComment;
+      // También guardamos una clave 'lastSender' por si la necesitas
+      data.lastSender = 'Técnicos de Compras';
+      data.lastSentAt = now;
+      
+      // Guardar de nuevo en localStorage
+      try {
+        localStorage.setItem('documentData', JSON.stringify(data));
+      } catch (e) {
+        console.error('Error guardando documentData al enviar:', e);
+        alert('No se pudo guardar la información. Comprueba el almacenamiento del navegador.');
+        return;
+      }
+      
+      // Mensaje de éxito y redirección al siguiente departamento
+      alert('Documentos y correcciones enviados a Departamento de Presupuesto.');
+      // Redirigir (asegúrate que el archivo exista)
+      window.location.href = 'Departamento de Presupuesto.html';
+    }
+    
+    // Inicializar cuando el DOM esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      loadDocumentsFromStorage();
+      setupSendControls();
+    });
+  </script>  
+   
+</body>
+</html>
